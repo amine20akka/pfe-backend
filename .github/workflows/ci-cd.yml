@@ -66,7 +66,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Docker image for georef-module
-        run: docker build -t ghcr.io/${{ github.repository_owner }}/georef-service:latest ./georef-module
+        run: docker build -f georef-module/Dockerfile -t ghcr.io/${{ github.repository_owner }}/georef-service:latest .
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -87,7 +87,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Docker image for drawing-module
-        run: docker build -t ghcr.io/${{ github.repository_owner }}/drawing-service:latest ./drawing-module
+        run: docker build -f drawing-module/Dockerfile -t ghcr.io/${{ github.repository_owner }}/drawing-service:latest .
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
