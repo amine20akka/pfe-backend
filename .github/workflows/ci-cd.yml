@@ -31,7 +31,7 @@ jobs:
         run: ./mvnw clean install -DskipTests
 
       - name: Run unit tests
-        run: ./mvnw test
+        run: ./mvnw test 
 
   #######################
   # 🐳 Docker Build & Push - georef-module
