@@ -6,12 +6,11 @@ WORKDIR /app
 COPY pom.xml .
 COPY .mvn .mvn
 COPY mvnw mvnw
-COPY drawing-module drawing-module
 
 RUN chmod +x ./mvnw
 
-# Commented out to avoid downloading dependencies every time
-# RUN ./mvnw -f pom.xml dependency:go-offline -B
+COPY drawing-module drawing-module
+COPY georef-module georef-module
 
 RUN ./mvnw -f pom.xml clean package -pl drawing-module -am -DskipTests
 
