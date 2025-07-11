@@ -8,6 +8,8 @@ COPY .mvn .mvn
 COPY mvnw mvnw
 COPY georef-module georef-module
 
+RUN chmod +x ./mvnw
+
 RUN ./mvnw -f pom.xml dependency:go-offline -B
 
 RUN ./mvnw -f pom.xml clean package -pl georef-module -am -DskipTests

@@ -8,6 +8,8 @@ COPY .mvn .mvn
 COPY mvnw mvnw
 COPY drawing-module drawing-module
 
+RUN chmod +x ./mvnw
+
 RUN ./mvnw -f pom.xml dependency:go-offline -B
 
 RUN ./mvnw -f pom.xml clean package -pl drawing-module -am -DskipTests
