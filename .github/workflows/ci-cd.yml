@@ -12,6 +12,20 @@ jobs:
   build:
     name: Build and Test All Modules
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: pfe_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout code
@@ -33,6 +47,10 @@ jobs:
         run: ./mvnw clean install -DskipTests
 
       - name: Run unit tests
+        env:
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/pfe_db
+          SPRING_DATASOURCE_USERNAME: postgres
+          SPRING_DATASOURCE_PASSWORD: postgres
         run: ./mvnw test
 
   #######################
