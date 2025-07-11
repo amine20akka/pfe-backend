@@ -17,15 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Debug - List project structure
-        run: |
-          echo "=== Root directory ==="
-          ls -la
-          echo "=== georef-module ==="
-          ls -la georef-module/ || echo "georef-module directory not found"
-          echo "=== drawing-module ==="
-          ls -la drawing-module/ || echo "drawing-module directory not found"
-
       - name: Set up Java 17
         uses: actions/setup-java@v3
         with:
