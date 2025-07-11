@@ -1,0 +1,42 @@
+{"properties": [
+  {
+    "name": "georef.storage.base-path",
+    "type": "java.lang.String",
+    "description": "The base path for the storage of images."
+  },
+  {
+    "name": "georef.storage.original-dir",
+    "type": "java.lang.String",
+    "description": "The directory for storing original images."
+  },
+  {
+    "name": "georef.storage.georeferenced-dir",
+    "type": "java.lang.String",
+    "description": "The directory for storing georeferenced images."
+  },
+  {
+    "name": "gdal.server.url",
+    "type": "java.lang.String",
+    "description": "GDAL Server URL"
+  },
+  {
+    "name": "geoserver.url",
+    "type": "java.lang.String",
+    "description": "GeoServer URL"
+  },
+  {
+    "name": "geoserver.workspace",
+    "type": "java.lang.String",
+    "description": "GeoServer workspace"
+  },
+  {
+    "name": "geoserver.username",
+    "type": "java.lang.String",
+    "description": "GeoServer username"
+  },
+  {
+    "name": "geoserver.password",
+    "type": "java.lang.String",
+    "description": "GeoServer password"
+  }
+]}
