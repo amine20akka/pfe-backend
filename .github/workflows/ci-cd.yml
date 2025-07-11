@@ -29,11 +29,9 @@ jobs:
 
       - name: Build All Modules
         run: ./mvnw clean install -DskipTests
-        working-directory: ./pfe-backend
 
       - name: Run unit tests
         run: ./mvnw test
-        working-directory: ./pfe-backend
 
   #######################
   # 🐳 Docker Build & Push - georef-module
