@@ -6,9 +6,9 @@ on:
   pull_request:
 
 jobs:
-  #######################
+  ########################
   # 🧪 Build & Test
-  #######################
+  ########################
   build:
     name: Build and Test All Modules
     runs-on: ubuntu-latest
