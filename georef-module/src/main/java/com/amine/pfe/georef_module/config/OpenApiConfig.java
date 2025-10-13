@@ -14,10 +14,10 @@ public class OpenApiConfig {
     OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Module de Géoréférencement")
-                        .description("API pour importer des images raster")
+                        .title("Georeferencing Module")
+                        .description("API for importing raster images")
                         .version("1.0.0")
-                        .description("Documentation des API pour le module de géoréférencement")
+                        .description("API documentation for the georeferencing module")
                         .termsOfService("http://swagger.io/terms/")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }

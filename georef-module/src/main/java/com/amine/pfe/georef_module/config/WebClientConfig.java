@@ -15,7 +15,7 @@ public class WebClientConfig {
     private String gdalServerUrl;
 
     /**
-     * WebClient configuré pour GDAL Server
+     * WebClient configured for GDAL Server
      */
     @Bean(name = "gdalWebClient")
     public WebClient gdalWebClient() {
@@ -29,8 +29,8 @@ public class WebClientConfig {
     }
     
     /**
-     * WebClient par défaut si aucun qualifier n'est spécifié
-     * Utile pour des usages génériques
+     * Default WebClient if no qualifier is specified.
+     * Useful for generic usage
      */
     @Bean
     @Primary
