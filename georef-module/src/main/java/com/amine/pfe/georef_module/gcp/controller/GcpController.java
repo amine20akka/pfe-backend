@@ -26,6 +26,56 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
+/**
+ * REST controller for Ground Control Point (GCP) management in the
+ * georeferencing module.
+ * 
+ * <p>
+ * This controller provides CRUD operations and analysis endpoints for managing
+ * GCPs,
+ * which are essential reference points for image georeferencing. It handles GCP
+ * creation,
+ * retrieval, updates, deletion, and residual computation.
+ * </p>
+ * 
+ * <p>
+ * <b>Base Path:</b> {@code /georef/gcp}
+ * </p>
+ * 
+ * <p>
+ * <b>Key Features:</b>
+ * </p>
+ * <ul>
+ * <li>Individual GCP operations (add, update, delete, retrieve)</li>
+ * <li>Bulk GCP loading from external sources (JSON)</li>
+ * <li>Residual analysis and RMSE computation</li>
+ * <li>Comprehensive error handling with appropriate HTTP status codes</li>
+ * </ul>
+ * 
+ * <p>
+ * <b>Error Handling Strategy:</b>
+ * </p>
+ * <p>
+ * All endpoints implement try-catch blocks to handle specific exceptions and
+ * return
+ * appropriate HTTP status codes. Errors are logged via SLF4J for monitoring and
+ * debugging.
+ * </p>
+ * 
+ * <p>
+ * <b>Documentation:</b>
+ * </p>
+ * <p>
+ * For detailed API documentation including request/response schemas and
+ * examples,
+ * refer to the Swagger UI at: {@code /swagger-ui.html}
+ * </p>
+ * 
+ * @author Amine
+ * @version 1.0
+ * @see GcpService
+ * @see GcpDto
+ */
 @RestController
 @RequestMapping("/georef/gcp")
 @RequiredArgsConstructor
