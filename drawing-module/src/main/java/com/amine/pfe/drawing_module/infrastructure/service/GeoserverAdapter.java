@@ -66,8 +66,7 @@ public class GeoserverAdapter implements CartographicServerPort {
 
     @Override
     public LayerSchema getLayerSchema(String workspace, String layerName) {
-        String urlString = String.format(
-                "%s/%s/ows?service=WFS&version=1.1.0&request=DescribeFeatureType&typeName=%s:%s",
+        String urlString = "%s/%s/ows?service=WFS&version=1.1.0&request=DescribeFeatureType&typeName=%s:%s".formatted(
                 geoserverUrl, workspace, workspace, layerName);
 
         try {
@@ -227,7 +226,7 @@ public class GeoserverAdapter implements CartographicServerPort {
                         layerCatalog.workspace(), entry.getKey()))
                 .collect(Collectors.joining("\n"));
 
-        return String.format("""
+        return """
                 <?xml version="1.0" encoding="UTF-8"?>
                 <wfs:Transaction version="1.1.0" service="WFS"
                     xmlns:wfs="http://www.opengis.net/wfs"
@@ -243,7 +242,7 @@ public class GeoserverAdapter implements CartographicServerPort {
                     </%1$s:%2$s>
                   </wfs:Insert>
                 </wfs:Transaction>
-                """,
+                """.formatted(
                 layerCatalog.workspace(),
                 layerCatalog.geoserverLayerName(),
                 geometryGml,
@@ -424,10 +423,10 @@ public class GeoserverAdapter implements CartographicServerPort {
                     coordinates[i], coordinates[i + 1]));
         }
 
-        return String.format(
+        return (
                 "<gml:LineString srsName=\"EPSG:3857\" srsDimension=\"2\">" +
                         "<gml:posList>%s</gml:posList>" +
-                        "</gml:LineString>",
+                        "</gml:LineString>").formatted(
                 coordsBuilder.toString());
     }
 
@@ -664,7 +663,7 @@ public class GeoserverAdapter implements CartographicServerPort {
 
     private String buildWfsDeleteTransaction(LayerCatalog layerCatalog, String featureId) {
 
-        return String.format("""
+        return """
                 <?xml version="1.0" encoding="UTF-8"?>
                 <wfs:Transaction version="1.1.0" service="WFS"
                     xmlns:wfs="http://www.opengis.net/wfs"
@@ -677,7 +676,7 @@ public class GeoserverAdapter implements CartographicServerPort {
                     </ogc:Filter>
                   </wfs:Delete>
                 </wfs:Transaction>
-                """,
+                """.formatted(
                 layerCatalog.workspace(),
                 layerCatalog.geoserverLayerName(),
                 featureId);

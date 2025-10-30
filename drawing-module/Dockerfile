@@ -1,26 +1,14 @@
-# 1. Build stage
-FROM eclipse-temurin:17-jdk AS build
-
+# Étape 1 : build du jar
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
-
 COPY pom.xml .
-COPY .mvn .mvn
-COPY mvnw mvnw
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-RUN chmod +x ./mvnw
-
-COPY drawing-module drawing-module
-COPY georef-module georef-module
-
-RUN ./mvnw -f pom.xml clean package -pl drawing-module -am -DskipTests
-
-# 2. Runtime stage
-FROM eclipse-temurin:17-jre-alpine
-
+# Étape 2 : image finale
+FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
-
-COPY --from=build /app/drawing-module/target/*.jar app.jar
-
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8082
+ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active=docker"]
 
-ENTRYPOINT ["java", "-jar", "app.jar"]

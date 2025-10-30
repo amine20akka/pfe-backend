@@ -28,13 +28,11 @@ public class FeatureGeometry {
     }
     
     private double[] parseCoordinatesDirectly(Object coordinatesObj) {
-        if (coordinatesObj instanceof List) {
-            List<?> coordsList = (List<?>) coordinatesObj;
+        if (coordinatesObj instanceof List<?> coordsList) {
             return coordsList.stream()
                 .mapToDouble(coord -> ((Number) coord).doubleValue())
                 .toArray();
-        } else if (coordinatesObj instanceof Object[]) {
-            Object[] coordsArray = (Object[]) coordinatesObj;
+        } else if (coordinatesObj instanceof Object[] coordsArray) {
             return Arrays.stream(coordsArray)
                 .mapToDouble(coord -> ((Number) coord).doubleValue())
                 .toArray();
