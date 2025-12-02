@@ -6,7 +6,7 @@ pipeline {
     }
 
     triggers {
-        // GitHub webhook trigger for push events
+        // GitHub webhook trigger for push event
         githubPush()
     }
     
