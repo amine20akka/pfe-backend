@@ -14,7 +14,7 @@ pipeline {
             }
         }
         
-        stage('🏗️ Build Backend modules') {
+        stage('🏗️ Build Java Backend modules') {
             steps {
                 script {
                     echo '=== Building modules ==='
