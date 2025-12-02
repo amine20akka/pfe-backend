@@ -4,12 +4,28 @@ pipeline {
             image 'maven:3.8.5-openjdk-17-slim'
         }
     }
+
+    triggers {
+        // GitHub webhook trigger for push events
+        githubPush()
+    }
+    
+    properties([
+        pipelineTriggers([
+            githubPush()
+        ])
+    ])
      
     stages {
         stage('🔍 Checkout') {
             steps {
-                echo '=== Checking out source code ==='
-                checkout scm
+                script {
+                    echo '=== Checking out source code ==='
+                    echo "Branch: ${env.GIT_BRANCH}"
+                    echo "Commit: ${env.GIT_COMMIT}"
+                    echo "Triggered by: ${currentBuild.getBuildCauses()}"
+                    checkout scm
+                }
             }
         }
         
