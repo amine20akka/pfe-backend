@@ -9,12 +9,6 @@ pipeline {
         // GitHub webhook trigger for push event
         githubPush()
     }
-    
-    properties([
-        pipelineTriggers([
-            githubPush()
-        ])
-    ])
      
     stages {
         stage('🔍 Checkout') {
