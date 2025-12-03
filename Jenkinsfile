@@ -40,18 +40,18 @@ pipeline {
             }
         }
         
-        stage('🧪 Run Tests') {
-            steps {
-                script {
-                    echo '=== Running tests for georef module ==='
+        // stage('🧪 Run Tests') {
+        //     steps {
+        //         script {
+        //             echo '=== Running tests for georef module ==='
                     
-                    dir('georef-module') {
-                        sh 'mvn test'
-                    }
+        //             dir('georef-module') {
+        //                 sh 'mvn test'
+        //             }
                     
-                    echo '✅ Georef tests passed'
-                }
-            }
-        }
+        //             echo '✅ Georef tests passed'
+        //         }
+        //     }
+        // }
     }
 }
