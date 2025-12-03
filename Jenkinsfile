@@ -23,16 +23,17 @@ pipeline {
             }
         }
         
-        stage('Build Java Backend modules') {
+        stage('🏗️ Build Java Backend modules') {
             steps {
                 script {
                     echo '=== Building modules ==='
                     
-                    // Multi-module build for backend
-                    echo '--- Building 2 Modules ---'
-                    dir('pfe-backend') {
-                        sh 'mvn -B -U clean package -DskipTests'
-                    }
+                    sh '''
+                        echo "Current directory: $(pwd)"
+                        ls -la
+                        echo "--- Building both modules ---"
+                        mvn -B -U clean package -DskipTests
+                    '''
                     
                     echo '✅ Builds completed'
                 }
@@ -44,7 +45,7 @@ pipeline {
                 script {
                     echo '=== Running tests for georef module ==='
                     
-                    dir('pfe-backend/georef-module') {
+                    dir('georef-module') {
                         sh 'mvn test'
                     }
                     
