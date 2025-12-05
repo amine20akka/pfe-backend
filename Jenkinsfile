@@ -2,6 +2,8 @@ pipeline {
     agent {
         dockerContainer {
             image 'maven:3.8.5-openjdk-17'
+            // Mount Docker socket to allow Docker commands within the container
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
 
@@ -22,20 +24,20 @@ pipeline {
             }
         }
         
-        stage('🏗️ Build Java Backend modules') {
-            steps {
-                script {
-                    echo '=== Building modules ==='
+        // stage('🏗️ Build Java Backend modules') {
+        //     steps {
+        //         script {
+        //             echo '=== Building modules ==='
                     
-                    sh '''
-                        echo "--- Building both modules ---"
-                        mvn -B -U clean package -DskipTests
-                    '''
+        //             sh '''
+        //                 echo "--- Building both modules ---"
+        //                 mvn -B -U clean package -DskipTests
+        //             '''
                     
-                    echo '✅ Builds completed'
-                }
-            }
-        }
+        //             echo '✅ Builds completed'
+        //         }
+        //     }
+        // }
 
         stage('🧪 Prepare Test Environment') {
             steps {
