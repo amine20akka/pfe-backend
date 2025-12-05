@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/pfe_db
+    username: postgres
+    password: postgres
+
+geoserver:
+  url: http://geoserver:8080/geoserver
+  username: admin
+  password: geoserver
+
+gdal:
+  server:
+    url: http://gdal-service:5000

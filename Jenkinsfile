@@ -6,7 +6,6 @@ pipeline {
     }
 
     triggers {
-        // GitHub webhook trigger for push event
         githubPush()
     }
      
@@ -29,8 +28,6 @@ pipeline {
                     echo '=== Building modules ==='
                     
                     sh '''
-                        echo "Current directory: $(pwd)"
-                        ls -la
                         echo "--- Building both modules ---"
                         mvn -B -U clean package -DskipTests
                     '''
@@ -39,19 +36,32 @@ pipeline {
                 }
             }
         }
-        
-        // stage('🧪 Run Tests') {
-        //     steps {
-        //         script {
-        //             echo '=== Running tests for georef module ==='
-                    
-        //             dir('georef-module') {
-        //                 sh 'mvn test'
-        //             }
-                    
-        //             echo '✅ Georef tests passed'
-        //         }
-        //     }
-        // }
+
+        stage('🧪 Prepare Test Environment') {
+            steps {
+                script {
+                    sh '''
+                        echo "Starting test environment..."
+                        docker compose -f docker-compose.test.yml up -d
+                    '''
+                }
+            }
+        }
+
+        stage('🧪 Run georef unit tests') {
+            steps {
+                script {
+                    sh '''
+                        mvn -pl georef-module test -Dspring.profiles.active=ci
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker compose -f docker-compose.test.yml down'
+        }
     }
 }

@@ -38,5 +38,10 @@
     "name": "geoserver.password",
     "type": "java.lang.String",
     "description": "GeoServer password"
+  },
+  {
+    "name": "georef.queue.image-processing",
+    "type": "java.lang.String",
+    "description": "The name of the queue for image processing tasks."
   }
 ]}
